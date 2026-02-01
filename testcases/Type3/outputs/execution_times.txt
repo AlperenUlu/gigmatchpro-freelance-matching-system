@@ -1,0 +1,9 @@
+Execution times in seconds
+
+-----------Large-----------
+
+***t3_large_3a: 2.26
+
+***t3_large_3b: 2.60
+
+***t3_large_3c: 2.55

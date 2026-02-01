@@ -1,0 +1,25 @@
+Execution times in seconds
+
+-----------Small-----------
+
+***t1_small_1a: 0.25
+
+***t1_small_1b: 0.24 
+
+***t1_small_1c: 0.26
+
+
+-----------Medium-----------
+
+***t1_medium_1a: 0.60
+
+***t1_medium_1b: 0.62
+
+***t1_medium_1c: 0.57
+
+
+-----------Large-----------
+
+***t1_large_1b: 2.01
+
+***t1_large_1c: 1.34

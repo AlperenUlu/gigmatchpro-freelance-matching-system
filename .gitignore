@@ -1,0 +1,35 @@
+# ===== Java =====
+*.class
+*.jar
+*.war
+*.ear
+
+# ===== Build / Runtime Output =====
+out/
+bin/
+target/
+output/
+
+# ===== Logs =====
+*.log
+
+# ===== OS =====
+.DS_Store
+Thumbs.db
+
+# ===== IDE =====
+.idea/
+.vscode/
+*.iml
+
+# ===== Python (test_runner.py) =====
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# ===== Temporary / Backup =====
+*.tmp
+*.swp
+*.bak

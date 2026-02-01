@@ -1,0 +1,24 @@
+Execution times in seconds
+
+-----------Small-----------
+ 
+***t2_small_2b: 0.36
+
+***t2_small_2c: 0.38
+
+
+-----------Medium-----------
+
+***t2_medium_2b: 1.04
+
+***t2_medium_2c: 1.13
+
+
+-----------Large-----------
+
+
+***t2_large_2c: 2.23
+
+***t2_large_2f: 1.65
+
+***t2_large_2h: 1.81
