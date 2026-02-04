@@ -141,7 +141,6 @@ inconsistent intermediate states.
 │   ├── User.java
 │   ├── Customer.java
 │   ├── Freelancer.java
-│   ├── UserTable.java
 │   ├── HashTable.java
 │   ├── MaximumHeap.java
 │   └── Entry.java
