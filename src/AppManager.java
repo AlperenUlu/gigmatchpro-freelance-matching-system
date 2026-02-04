@@ -9,10 +9,10 @@ import java.util.LinkedList;
 public class AppManager {
 
     //Stores all registered customers using a Hash Table.
-    private UserTable<Customer> customerHashTable = new UserTable<>();
+    private HashTable<Customer> customerHashTable = new HashTable<>();
 
     //Stores all registered freelancers using a Hash Table.
-    private UserTable<Freelancer> freelancerHashTable = new UserTable<>();
+    private HashTable<Freelancer> freelancerHashTable = new HashTable<>();
 
     //Requirements for each service type.
     private int[][] serviceTypeArray = {
@@ -57,7 +57,7 @@ public class AppManager {
         }
         else{
             Customer newCustomer = new Customer(customerID);
-            customerHashTable.put(newCustomer);
+            customerHashTable.put(newCustomer.getID(), newCustomer);
             return "registered customer " + customerID;
         }
     }
@@ -147,7 +147,7 @@ public class AppManager {
             int compositeScore = newFreelancer.findCompositeScore(serviceSkillArray);
             newFreelancer.setCompositeScore(compositeScore);
 
-            freelancerHashTable.put(newFreelancer);
+            freelancerHashTable.put(newFreelancer.getID(), newFreelancer);
             servicePriorityQueue[serviceIndex].insert(newFreelancer);
 
             return "registered freelancer " + freelancerID;
@@ -167,7 +167,7 @@ public class AppManager {
         }
         else{
             Customer customer = (Customer) customerHashTable.get(customerID);
-            UserTable<Freelancer> blacklistedHashTable = customer.getBlacklistedHashTable();
+            HashTable<Freelancer> blacklistedHashTable = customer.getBlacklistedHashTable();
 
             // Prevent duplicate blacklist entries
             if (blacklistedHashTable.containsID(freelancerID)){
@@ -194,7 +194,7 @@ public class AppManager {
         }
         else{
             Customer customer = (Customer) customerHashTable.get(customerID);
-            UserTable<Freelancer> blacklistedHashTable = customer.getBlacklistedHashTable();
+            HashTable<Freelancer> blacklistedHashTable = customer.getBlacklistedHashTable();
 
             // Check if they are actually blacklisted before attempting to remove
             if (!blacklistedHashTable.containsID(freelancerID)){
@@ -222,7 +222,7 @@ public class AppManager {
         else {
             Customer customer = (Customer) customerHashTable.get(customerID);
             Freelancer freelancer = (Freelancer) freelancerHashTable.get(freelancerID);
-            UserTable<Freelancer> blacklistedHashTable = customer.getBlacklistedHashTable();
+            HashTable<Freelancer> blacklistedHashTable = customer.getBlacklistedHashTable();
 
             // Freelancer must not be blacklisted and must be available.
             if (blacklistedHashTable.containsID(freelancerID) || !freelancer.isAvailable()){
@@ -445,7 +445,7 @@ public class AppManager {
             return "no freelancers available";
         }
         Customer customer = customerHashTable.get(customerID);
-        UserTable<Freelancer> blacklistedHashTable = customerHashTable.get(customerID).getBlacklistedHashTable();
+        HashTable<Freelancer> blacklistedHashTable = customerHashTable.get(customerID).getBlacklistedHashTable();
 
         // Temporary list to hold candidates that we remove from the heap except the best freelancer.
         // We need to put them back later to restore the heap state.
@@ -539,7 +539,7 @@ public class AppManager {
      */
     public String simulateMonth(){
         // Update burnout status for all freelancers
-        LinkedList<Freelancer> allFreelancersList = freelancerHashTable.getAllUsers();
+        LinkedList<Freelancer> allFreelancersList = freelancerHashTable.getAllValues();
         for(Freelancer freelancer: allFreelancersList){
             if(freelancer.isBurnout()){
                 // Recovery check: If they worked maximum two times in a month, they recover.
@@ -561,7 +561,7 @@ public class AppManager {
         }
 
         // Update customer loyalty points
-        LinkedList<Customer> allCustomersList = customerHashTable.getAllUsers();
+        LinkedList<Customer> allCustomersList = customerHashTable.getAllValues();
         for(Customer customer: allCustomersList){
 
             int totalSpending = customer.getTotalSpending();

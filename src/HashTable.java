@@ -23,6 +23,20 @@ public class HashTable<V> {
         }
         this.size = 0;
     }
+    /**
+     * Initializes the hash table with a specified capacity.
+     * Useful for smaller tables like a customer's personal blacklist.
+     * @param capacity The initial size of the hash table array.
+     */
+    public HashTable(int capacity) {
+        this.capacity = capacity;
+        this.table = new LinkedList[this.capacity];
+        // Initialize every bucket with an empty LinkedList to avoid null checks
+        for (int i = 0; i < capacity; i++) {
+            table[i] = new LinkedList<>();
+        }
+        this.size = 0;
+    }
 
     /**
      * Associates the specified value with the specified key in the map.
@@ -145,5 +159,17 @@ public class HashTable<V> {
         }
         return Math.abs(hashcode);
     }
-
+    /**
+     * Retrieves all values from all buckets in the table.
+     * @return A LinkedList containing all user objects.
+     */
+    public LinkedList<V> getAllValues() {
+        LinkedList<V> allValues = new LinkedList<>();
+        for (int i = 0; i < capacity; i++) {
+            for (Entry<V> entry : table[i]) {
+                allValues.add(entry.value);
+            }
+        }
+        return allValues;
+    }
 }

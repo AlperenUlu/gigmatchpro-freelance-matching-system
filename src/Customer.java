@@ -9,7 +9,7 @@ public class Customer implements User {
     private final String customerID;
 
     //A personal hash table to store blocked freelancers.
-    private UserTable<Freelancer> blacklistedHashTable;
+    private HashTable<Freelancer> blacklistedHashTable;
 
     private int blacklistedCounter; // Tracks the number of blocked users
     private int totalEmployments;   // Total number of jobs given to freelancers
@@ -23,7 +23,7 @@ public class Customer implements User {
      */
     Customer(String customerID){
         this.customerID = customerID;
-        this.blacklistedHashTable = new UserTable<>(97);
+        this.blacklistedHashTable = new HashTable<>(97);
         this.blacklistedCounter = 0;
         this.totalEmployments = 0;
         this.loyaltyPoints = 0;
@@ -46,11 +46,11 @@ public class Customer implements User {
      * @param freelancerID        The ID of the freelancer to block.
      * @param freelancerHashTable The main data source containing all system freelancers.
      */
-    public void blacklistFreelancer(String freelancerID , UserTable<Freelancer> freelancerHashTable){
+    public void blacklistFreelancer(String freelancerID , HashTable<Freelancer> freelancerHashTable){
         // Retrieve the Freelancer object reference from the hash table
         Freelancer blacklistedFreelancer = (Freelancer) freelancerHashTable.get(freelancerID);
         // Insert into the local blacklist table
-        blacklistedHashTable.put(blacklistedFreelancer);
+        blacklistedHashTable.put(freelancerID, blacklistedFreelancer);
         blacklistedCounter++;
     }
 
@@ -68,7 +68,7 @@ public class Customer implements User {
      * Getter for the blacklist list.
      * @return The UserTable containing blocked freelancers.
      */
-    public UserTable<Freelancer> getBlacklistedHashTable() {
+    public HashTable<Freelancer> getBlacklistedHashTable() {
         return blacklistedHashTable;
     }
 
